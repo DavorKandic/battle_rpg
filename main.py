@@ -52,7 +52,16 @@ while running:
         print(tcols.yellow(f'You have chosen {magic[index]["name"].upper()}!'))
         magic_dmg = player.generate_spell_damage(index)
         enemy.take_damage(magic_dmg)
+        spell = player.get_spell_name(index)
+        cost = player.get_spell_mp_cost(index)
         print('You attacked for',magic_dmg,'points of damage. Enemy HP: ',enemy.get_hp())
+
+        current_mp = player.get_mp()
+        new_mp = current_mp - cost
+        player.mp = new_mp
+        if player.mp < 0:
+            player.mp = 0
+        print(tcols.yellow(f'You have {player.mp} magic points left.'))
    
     if enemy.get_hp() == 0:
         print(tcols.green('You win!'))
@@ -66,12 +75,7 @@ while running:
     if player.get_hp() == 0:
         print(tcols.red('Your enemy has defeated you!'))
         break
-    """
-    player.choose_magic()
-    choice = input('Choose magic: ')
-    index = int(choice) - 1
-    print('You chose', player.get_spell_name(index))
-    """
+    
 time.sleep(0.5)
 print(tcols.yellow('GAME OVER'))
 
