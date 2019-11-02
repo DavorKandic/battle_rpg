@@ -1,14 +1,29 @@
 import random
+from termcolor import colored
+import os
 
-class bcolors:
-    HEADER = '\033[95n'
-    OKBLUE = '\033[94n'
-    OKGREEN = '\033[92n'
-    WARNING = '\033[93n'
-    FAIL = '\033[91n'
-    ENDC = '\033[0n'
-    BOLD = '\033[1n'
-    UNDERLINE = '\033[4n'
+os.system('color')
+
+class tcols:
+
+    @staticmethod
+    def red(text):
+        return colored(text, 'red')
+
+    @staticmethod
+    def green(text):
+        return colored(text, 'green')
+
+    @staticmethod
+    def blue(text):
+        return colored(text, 'blue')
+
+    @staticmethod
+    def yellow(text):
+        return colored(text, 'yellow')
+
+    
+    
 
 
 class Person:

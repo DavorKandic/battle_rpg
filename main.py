@@ -1,11 +1,13 @@
-from classes.game import Person, bcolors
+from classes.game import Person, tcols
+import os
 
+os.system('color')
 
 magic = [{'name': 'Fire', 'cost': 10, 'dmg': 60},
          {'name': 'Thunder', 'cost': 12, 'dmg': 80},
          {'name': 'Blizzard', 'cost': 8, 'dmg': 40}]
 player = Person(460, 65, 60, 34, magic)
-enemy = Person(1200, 65, 45, 25, magic)
+enemy = Person(12, 65, 45, 25, magic)
 """
 # Testing our player object
 print('PHYSICAL ATTACK TEST')
@@ -30,7 +32,7 @@ print(f'After taking damage of {dmg3} HP is {player.hp}')
 running = True
 i = 0
 
-print(bcolors.FAIL + bcolors.BOLD + 'ENEMY ATTACKS!' + bcolors.ENDC)
+print(tcols.red('ENEMY ATTACKS!'))
 i += 1
 
 while running:
@@ -49,7 +51,8 @@ while running:
     player.take_damage(enemy_dmg)
     print('Enemy attacked for', enemy_dmg, 'points of damage. Player HP:', player.get_hp())
 
-
+    if enemy.get_hp() == 0:
+        print(tcols.green('You win'))
     """
     player.choose_magic()
     choice = input('Choose magic: ')
