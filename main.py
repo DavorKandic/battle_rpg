@@ -49,16 +49,19 @@ while running:
         player.choose_magic()
         magic_choice = input('Choose magic: ')
         index = int(magic_choice) - 1
-        print(tcols.yellow(f'You have chosen {magic[index]["name"].upper()}!'))
-        magic_dmg = player.generate_spell_damage(index)
-        enemy.take_damage(magic_dmg)
         spell = player.get_spell_name(index)
         cost = player.get_spell_mp_cost(index)
-        print('You attacked for',magic_dmg,'points of damage. Enemy HP: ',enemy.get_hp())
-
         current_mp = player.get_mp()
-        new_mp = current_mp - cost
-        player.mp = new_mp
+        print(tcols.yellow(f'You have chosen {magic[index]["name"].upper()}!'))
+        if current_mp < cost:
+            print(tcols.red('You do not have enough magic points to cast that spell!'))
+            continue
+        else:
+            magic_dmg = player.generate_spell_damage(index)
+            enemy.take_damage(magic_dmg)
+            print('You attacked for',magic_dmg,'points of damage. Enemy HP: ',enemy.get_hp())
+            new_mp = current_mp - cost
+            player.mp = new_mp
         if player.mp < 0:
             player.mp = 0
         print(tcols.yellow(f'You have {player.mp} magic points left.'))
@@ -72,6 +75,13 @@ while running:
     enemy_dmg = enemy.generate_damage()
     player.take_damage(enemy_dmg)
     print('Enemy attacked for', enemy_dmg, 'points of damage. Player HP:', player.get_hp())
+
+    print(tcols.blue('-' * 30))
+    print(tcols.yellow('STATS: '))
+    print(tcols.green(f'Player\'s - HP: {player.get_hp()}, -MP: {player.get_mp()} '))
+    print(tcols.red(f'Enemy\'s - HP: {enemy.get_hp()}'))
+    print(tcols.blue('-' * 30))
+    
     if player.get_hp() == 0:
         print(tcols.red('Your enemy has defeated you!'))
         break
