@@ -37,6 +37,11 @@ class Person:
             self.hp = 0
         return self.hp
 
+    def heal(self, dmg):
+        self.hp += dmg
+        if self.hp > self.maxhp:
+            self.hp = self.maxhp
+
     def get_hp(self):
         return self.hp
 
@@ -67,6 +72,6 @@ class Person:
     def choose_magic(self):
         i = 1
         for spell in self.magic:
-            print(str(i) + ':', spell['name'], '(cost:', str(spell['mp']) + ')')
+            print(str(i) + ':', spell['name'], '(cost:', str(spell['cost']) + ')')
             i += 1
         
