@@ -6,7 +6,7 @@ os.system('color')
 
 magic = [{'name': 'Fire', 'cost': 10, 'dmg': 100},
          {'name': 'Thunder', 'cost': 12, 'dmg': 120},
-         {'name': 'Blizzard', 'cost': 8, 'dmg': 100}]
+         {'name': 'Blizzard', 'cost': 8, 'dmg': 80}]
 player = Person(460, 65, 60, 34, magic)
 enemy = Person(1200, 65, 45, 25, magic)
 """
@@ -78,8 +78,8 @@ while running:
 
     print(tcols.blue('-' * 30))
     print(tcols.yellow('STATS: '))
-    print(tcols.green(f'Player\'s - HP: {player.get_hp()}, -MP: {player.get_mp()} '))
-    print(tcols.red(f'Enemy\'s - HP: {enemy.get_hp()}'))
+    print(tcols.green(f'Player\'s - HP: {player.get_hp()}/{player.get_max_hp()}, -MP: {player.get_mp()}/{player.get_max_mp()} '))
+    print(tcols.red(f'Enemy\'s - HP: {enemy.get_hp()}/{enemy.get_max_hp()}'))
     print(tcols.blue('-' * 30))
     
     if player.get_hp() == 0:
